@@ -1,0 +1,16 @@
+.container {
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: white;
+  background-color: #424242;
+}
+
+.sub-container {
+  display: flex;
+  flex-direction: column;
+}

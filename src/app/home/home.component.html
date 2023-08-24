@@ -1,0 +1,78 @@
+<app-spinner></app-spinner>
+<div class="background">
+    <div style="display: flex; justify-content: flex-end">
+        <button
+            mat-raised-button
+            color="primary"
+            style="margin: 1% 0"
+            [routerLink]="['/add']"
+        >
+            <mat-icon>add</mat-icon> Add
+        </button>
+        <button
+            mat-raised-button
+            color="primary"
+            style="margin: 1% 1% 1% 2%"
+            [routerLink]="['/cities']"
+        >
+            Cities
+        </button>
+    </div>
+    <table mat-table [dataSource]="users">
+        <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef>Id</th>
+            <td mat-cell *matCellDef="let element">
+                {{ element.id }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="firstName">
+            <th mat-header-cell *matHeaderCellDef>First Name</th>
+            <td mat-cell *matCellDef="let element">
+                {{ element.firstName }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="lastName">
+            <th mat-header-cell *matHeaderCellDef>Last Name</th>
+            <td mat-cell *matCellDef="let element">
+                {{ element.lastName }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="gender">
+            <th mat-header-cell *matHeaderCellDef>Gender</th>
+            <td mat-cell *matCellDef="let element">
+                {{ element.gender === "male" ? "Male" : "Female" }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="age">
+            <th mat-header-cell *matHeaderCellDef>Age</th>
+            <td mat-cell *matCellDef="let element">
+                {{ element.age }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef>Actions</th>
+            <td mat-cell *matCellDef="let element">
+                <button
+                    mat-raised-button
+                    color="accent"
+                    style="margin-right: 2%"
+                    [routerLink]="['/edit', element.id]"
+                >
+                    <mat-icon>edit</mat-icon>
+                    Edit
+                </button>
+                <button
+                    mat-raised-button
+                    color="warn"
+                    (click)="openDialog(element.id)"
+                >
+                    <mat-icon>delete</mat-icon>
+                    Delete
+                </button>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
+        <tr mat-row *matRowDef="let myRowData; columns: displayColumns"></tr>
+    </table>
+</div>

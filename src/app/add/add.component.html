@@ -1,0 +1,93 @@
+<app-spinner></app-spinner>
+<div class="container">
+  <form #addForm="ngForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <mat-form-field class="seperation">
+        <mat-label>First Name</mat-label>
+        <input
+          matInput
+          required
+          type="text"
+          placeholder="First Name"
+          [(ngModel)]="user.firstName"
+          #firstName="ngModel"
+          pattern="[A-z]*"
+          name="firstName"
+        />
+        <mat-error *ngIf="firstName.errors?.required"
+          >First Name is required</mat-error
+        >
+        <mat-error *ngIf="firstName.errors?.pattern"
+          >First Name must contain only letters</mat-error
+        >
+      </mat-form-field>
+      <mat-form-field class="seperation">
+        <mat-label>Last Name</mat-label>
+        <input
+          matInput
+          required
+          type="text"
+          placeholder="Last Name"
+          [(ngModel)]="user.lastName"
+          #lastName="ngModel"
+          pattern="[A-z]*"
+          name="lastName"
+        />
+        <mat-error *ngIf="lastName.errors?.required"
+          >Last Name is required</mat-error
+        >
+        <mat-error *ngIf="lastName.errors?.pattern"
+          >Last Name must contain only letters</mat-error
+        >
+      </mat-form-field>
+    </div>
+    <div class="row" style="margin-top: 7%">
+      <mat-form-field class="seperation">
+        <mat-label>Gender</mat-label>
+        <mat-select
+          [(ngModel)]="user.gender"
+          #gender="ngModel"
+          name="gender"
+          required
+        >
+          <mat-option disabled value="select">Select</mat-option>
+          <mat-option *ngFor="let gender of genders" [value]="gender.id">{{
+            gender.value
+          }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="seperation">
+        <mat-label>Age</mat-label>
+        <input
+          matInput
+          required
+          type="number"
+          min="18"
+          max="60"
+          placeholder="Age"
+          [(ngModel)]="user.age"
+          #age="ngModel"
+          name="age"
+        />
+        <mat-error *ngIf="age.errors?.required">Age is required</mat-error>
+        <mat-error *ngIf="age.errors?.min"
+          >Age must be greater than or equal to 18</mat-error
+        >
+        <mat-error *ngIf="age.errors?.max"
+          >Age must be less than or equal to 60</mat-error
+        >
+      </mat-form-field>
+    </div>
+    <div>
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="!addForm.valid"
+      >
+        <mat-icon>save</mat-icon>
+        Submit
+      </button>
+    </div>
+  </form>
+</div>

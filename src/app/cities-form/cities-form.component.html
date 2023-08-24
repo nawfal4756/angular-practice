@@ -1,0 +1,31 @@
+<app-spinner></app-spinner>
+<div class="container">
+    <h1>City Form</h1>
+    <form [formGroup]="citiesForm" (ngSubmit)="onSubmit()">
+        <div class="sub-container">
+            <mat-form-field>
+                <mat-label>City Name</mat-label>
+                <mat-select required formControlName="city">
+                    <mat-option value="" disabled>Select</mat-option>
+                    <mat-option *ngFor="let city of citiesList | sort" [value]="city">{{city}}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="city?.invalid && city?.touched">
+                    City Name is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+            
+            <mat-form-field>
+                <mat-label>Area</mat-label>
+                <mat-select required formControlName="area">
+                    <mat-option value="" disabled>Select</mat-option>
+                    <mat-option *ngFor="let area of areaList | sort" [value]="area">{{area}}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="area?.invalid && area?.touched">
+                    Area is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+        </div>
+        
+        <button mat-raised-button color="primary" type="submit" [disabled]="citiesForm.invalid"><mat-icon>save</mat-icon> Submit</button>
+    </form>
+</div>
